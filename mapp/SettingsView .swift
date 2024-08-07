@@ -2,47 +2,57 @@ import SwiftUI
 
 struct SettingsView: View {
     @Binding var showSettings: Bool
+    @State private var ghostModeEnabled = false
+    @State private var visibilityOption = "My Friends"
 
     var body: some View {
         NavigationView {
-            Form {
-                Section(header: Text("Account")) {
-                    NavigationLink(destination: Text("Profile Settings")) {
-                        Text("Profile")
-                    }
-                    NavigationLink(destination: Text("Security Settings")) {
-                        Text("Security")
-                    }
-                }
+            VStack {
+                Form {
+                    Section(header: Text("My Location")) {
+                        HStack {
+                            Image("ghostIcon")
+                                
+                                .resizable()
+                                .frame(width: 30, height: 30)
+                                .foregroundColor(.black)
+                            VStack(alignment: .leading) {
+                                Text("Ghost Mode")
+                                    .font(.headline)
+                                Text("When ghost mode is enabled, anyone can't see your location")
+                                    .font(.caption)
+                                    .foregroundColor(.gray)
+                            }
+                            Spacer()
+                            Toggle("", isOn: $ghostModeEnabled)
+                                .labelsHidden()
+                        }
+                        .padding(.vertical, 10)
 
-                Section(header: Text("Preferences")) {
-                    Toggle(isOn: .constant(true)) {
-                        Text("Enable Notifications")
-                    }
-                    NavigationLink(destination: Text("Language Settings")) {
-                        Text("Language")
-                    }
-                }
+                        Picker(selection: $visibilityOption, label: Text("Visibility")) {
+                            Text("My Friends").tag("My Friends")
+                            Text("Hide me from").tag("hide me from")
+                            Text("Only visible to").tag("Only visible to")
+                        }
+                        .pickerStyle(MenuPickerStyle())
 
-                Section(header: Text("Support")) {
-                    NavigationLink(destination: Text("Help & Feedback")) {
-                        Text("Help & Feedback")
+                        NavigationLink(destination: Text("Share My live location")) {
+                            HStack {
+                                Text("Share My live location")
+                                Spacer()
+                                Image(systemName: "chevron.right")
+                                    .foregroundColor(.gray)
+                            }
+                        }
                     }
-                    NavigationLink(destination: Text("About Us")) {
-                        Text("About Us")
-                    }
-                }
-
-                Button(action: {
-                    // Action for logout
-                }) {
-                    Text("Log Out")
-                        .foregroundColor(.red)
                 }
             }
-            .navigationBarTitle("Settings")
-            .navigationBarItems(trailing: Button("Done") {
+            .navigationBarTitle("Settings", displayMode: .inline)
+            .navigationBarItems(leading: Button(action: {
                 showSettings = false
+            }) {
+                Image(systemName: "arrow.backward")
+                    .foregroundColor(.black)
             })
         }
     }

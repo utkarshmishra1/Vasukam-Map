@@ -6,3 +6,14 @@
 //
 
 import Foundation
+import SwiftUI
+import MapKit
+
+struct MapStyleViewContainer: View {
+    @Binding var selectedStyle: MKMapType
+
+    var body: some View {
+        MapStyleView(selectedStyle: $selectedStyle)
+    }
+}
+

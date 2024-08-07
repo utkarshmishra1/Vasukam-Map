@@ -1,8 +1,17 @@
-//
-//  MainView.swift
-//  mapp
-//
-//  Created by utkarsh mishra on 04/08/24.
-//
+import SwiftUI
 
-import Foundation
+struct MainView: View {
+
+    var body: some View {
+        TabView {
+            ContentView()
+                
+        }
+    }
+}
+
+struct MainView_Previews: PreviewProvider {
+    static var previews: some View {
+        MainView()
+    }
+}

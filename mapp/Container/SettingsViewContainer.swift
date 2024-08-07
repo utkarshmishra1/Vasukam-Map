@@ -6,3 +6,13 @@
 //
 
 import Foundation
+import SwiftUI
+
+struct SettingsViewContainer: View {
+    @Binding var showSettings: Bool
+
+    var body: some View {
+        SettingsView(showSettings: $showSettings)
+    }
+}
+

@@ -6,3 +6,13 @@
 //
 
 import Foundation
+import SwiftUI
+
+struct DiscoverFriendsViewContainer: View {
+    @Binding var friends: [Friend]
+    @Binding var selectedFriend: Friend?
+
+    var body: some View {
+        DiscoverFriendsView(friends: $friends, selectedFriend: $selectedFriend)
+    }
+}

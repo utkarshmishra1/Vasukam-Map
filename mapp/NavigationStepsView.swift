@@ -1,8 +1,17 @@
-//
-//  NavigationStepsView.swift
-//  mapp
-//
-//  Created by utkarsh mishra on 04/08/24.
-//
+import SwiftUI
 
-import Foundation
+struct NavigationStepsView: View {
+    let steps: [String]
+
+    var body: some View {
+        VStack {
+            Text("Navigation Steps")
+                .font(.largeTitle)
+                .padding()
+            
+            List(steps, id: \.self) { step in
+                Text(step)
+            }
+        }
+    }
+}

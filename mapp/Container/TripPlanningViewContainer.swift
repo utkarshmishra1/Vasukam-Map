@@ -6,3 +6,13 @@
 //
 
 import Foundation
+import SwiftUI
+
+struct TripPlanningViewContainer: View {
+    @Binding var showTripPlanning: Bool
+
+    var body: some View {
+        TripPlanningView(isPresented: $showTripPlanning)
+    }
+}
+
